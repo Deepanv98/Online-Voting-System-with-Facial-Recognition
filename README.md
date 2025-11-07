@@ -72,17 +72,17 @@ Online-Voting-System-with-Facial-Recognition/
 ├── media/
 └── README.md
 
-📷 Facial Recognition Overview
+# 📷 Facial Recognition Overview
 
 The system uses OpenCV’s face recognition module to:
 
-Capture the voter’s face via webcam.
+1. Capture the voter’s face via webcam.
 
-Match it with the registered face dataset.
+2. Match it with the registered face dataset.
 
-Allow the vote only if the match is successful.
+3. Allow the vote only if the match is successful.
 
-🧠 Future Enhancements
+# 🧠 Future Enhancements
 
 Integration with government ID verification (e.g., Aadhaar).
 
