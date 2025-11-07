@@ -84,18 +84,21 @@ The system uses OpenCV’s face recognition module to:
 
 # 🧠 Future Enhancements
 
-Integration with government ID verification (e.g., Aadhaar).
+- Integration with government ID verification (e.g., Aadhaar).
 
-Cloud-based deployment.
+- Cloud-based deployment.
 
-Multi-factor authentication for extra security.
+- Multi-factor authentication for extra security.
 
-Real-time analytics dashboard.
+- Real-time analytics dashboard.
 
-👩‍💻 Developed By
+# 👩‍💻 Developed By
 
 Deepa Velayudhan
+
 Python | Django | ML | HTML | CSS
+
 📧 deepanv98@gmail.com
+
 
 ⭐ If you like this project, don’t forget to star the repository on GitHub!
