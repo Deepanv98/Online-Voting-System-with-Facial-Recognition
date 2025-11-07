@@ -67,14 +67,22 @@ Now visit http://127.0.0.1:8000 to view the app.
 <pre>
   ```
 Online-Voting-System-with-Facial-Recognition/
-├── manage.py
 ├── voting_app/
 │   ├── models.py
 │   ├── views.py
 │   ├── urls.py
+│   ├── static/
 │   └── templates/
-├── static/
+├── admin_panel/
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   └── templates/
 ├── media/
+├── dataset/
+├── db.sqlite3
+├── manage.py
+├── trainer
 └── README.md
 ``` </pre>
 
