@@ -62,11 +62,11 @@ Now visit http://127.0.0.1:8000 to view the app.
 
 # 🧑‍💻 Project Structure
 
-Online-Voting-System-with-Facial-Recognition/
 
-<pre> ## 🧑‍💻 Project Structure 
-  
-``` Online-Voting-System-with-Facial-Recognition/
+
+<pre>
+  ```
+Online-Voting-System-with-Facial-Recognition/
 ├── manage.py
 ├── voting_app/
 │   ├── models.py
