@@ -36,22 +36,27 @@ It ensures authenticity, eliminates duplicate voting, and promotes transparency 
 git clone https://github.com/Deepanv98/Online-Voting-System-with-Facial-Recognition.git
 ```
 ### 2️⃣ Navigate into the Project
+```bash
 cd Online-Voting-System-with-Facial-Recognition
-
+```
 ### 3️⃣ Create a Virtual Environment
+```bash
 python -m venv venv
 venv\Scripts\activate   # On Windows
-
+```
 ### 4️⃣ Install Dependencies
+```bash
 pip install -r requirements.txt
-
+```
 ### 5️⃣ Run Migrations
+```bash
 python manage.py makemigrations
 python manage.py migrate
-
+```
 ### 6️⃣ Start the Server
+```bash
 python manage.py runserver
-
+```
 
 Now visit http://127.0.0.1:8000 to view the app.
 
