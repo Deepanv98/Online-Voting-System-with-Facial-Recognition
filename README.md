@@ -34,8 +34,8 @@ It ensures authenticity, eliminates duplicate voting, and promotes transparency 
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/Deepanv98/Online-Voting-System-with-Facial-Recognition.git
-
-###2️⃣ Navigate into the Project
+```
+### 2️⃣ Navigate into the Project
 cd Online-Voting-System-with-Facial-Recognition
 
 ### 3️⃣ Create a Virtual Environment
@@ -55,7 +55,7 @@ python manage.py runserver
 
 Now visit http://127.0.0.1:8000 to view the app.
 
-#🧑‍💻 Project Structure
+# 🧑‍💻 Project Structure
 Online-Voting-System-with-Facial-Recognition/
 ├── manage.py
 ├── voting_app/
