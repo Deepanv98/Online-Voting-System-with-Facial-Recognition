@@ -35,7 +35,7 @@ It ensures authenticity, eliminates duplicate voting, and promotes transparency 
 ```bash
 git clone https://github.com/Deepanv98/Online-Voting-System-with-Facial-Recognition.git
 
-### 2️⃣ Navigate into the Project
+###2️⃣ Navigate into the Project
 cd Online-Voting-System-with-Facial-Recognition
 
 ### 3️⃣ Create a Virtual Environment
