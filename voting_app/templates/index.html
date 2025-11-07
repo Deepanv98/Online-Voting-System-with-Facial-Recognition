@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Voting System</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            color: #343a40;
+        }
+
+        header {
+            background-color: #004085;
+            padding: 15px;
+            color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00aaff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 80px);
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 72px;
+            letter-spacing: 6px;
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        p {
+            margin: 20px 0;
+            font-size: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .enter-button {
+            text-decoration: none;
+            padding: 15px 30px;
+            background-color: #ffc107;
+            color: black;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .enter-button:hover {
+            background-color: #ffdd57;
+            color: #343a40;
+        }
+
+        .btn-outline {
+            margin: 5px;
+            border: 2px solid white;
+            color: white;
+            padding: 7px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: #004085;
+        }
+        .nav-link:hover {
+            color: #45b6fe;
+        }
+    </style>
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center">
+        <div class="logo">E-VOTING SYSTEM</div>
+        <nav>
+            <a href="{% url 'home' %}" class="nav-link">Home</a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'election_results' %}" class="nav-link">Election Result</a>
+            <a href="{% url 'signout' %}" class="btn btn-outline">Logout</a>
+            {% else %}
+            <a href="{% url 'signup' %}" class="btn btn-outline">Register</a>
+            <a href="{% url 'signin' %}" class="btn btn-outline">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>E-VOTING</h1>
+        <img src="{% static 'images/vot.png' %}" alt="logo" class="img-fluid mt-4 mb-3" style="max-width: 200px;">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'face_recognition' %}" class="enter-button">VOTE NOW</a>
+        {% else %}
+        <a href="{% url 'signin' %}" class="enter-button">VOTE NOW</a>
+<!--        <button id="voteNowButton" class="enter-button">VOTE NOW</button>-->
+        {% endif %}
+        <p class="text-primary">Build a secure and transparent voting system with advanced technology.</p>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

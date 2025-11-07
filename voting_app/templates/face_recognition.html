@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Face Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1e90ff;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .stream {
+            border: 5px solid white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Live Face Recognition</h1>
+        <img src="/face-recognition/" class="stream" alt="Live Stream">
+        <div class="status" id="status">Recognizing face...</div>
+    </div>
+
+    <script>
+        const status = document.getElementById("status");
+
+        const checkRecognition = () => {
+            fetch("/check-recognition-status/")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        // Redirect to the voting page
+                        window.location.href = `/vote/${data.user_id}/`;
+                    } else {
+                        status.textContent = "Recognizing face...";
+                    }
+                })
+                .catch(err => {
+                    status.textContent = "Error in recognition!";
+                });
+        };
+
+        // Check recognition every 2 seconds
+        setInterval(checkRecognition, 2000);
+    </script>
+</body>
+</html>

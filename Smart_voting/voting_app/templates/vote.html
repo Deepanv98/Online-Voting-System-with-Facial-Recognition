@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote for Your Candidate</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #007BFF;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .candidate-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .candidate-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .candidate-info img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #007BFF;
+        }
+
+        .candidate-info h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .candidate-info p {
+            font-size: 1rem;
+            color: #555;
+            margin: 5px 0 0;
+        }
+
+        .vote-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .vote-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .messages {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .messages p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: red;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Voting Container -->
+    <div class="container">
+        <h1>Vote for Your Favorite Candidate</h1>
+
+        <!-- Flash Messages -->
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+
+        <!-- Candidates List -->
+        <form method="POST">
+            {% csrf_token %}
+            {% for candidate in candidates %}
+            <div class="candidate-card">
+                <div class="candidate-info">
+                    <img src="{{ candidate.party_symbol.url }}" alt="Candidate Symbol">
+                    <div>
+                        <h3>{{ candidate.full_name }}</h3>
+                        <p>Symbol: {{ candidate.party_name }}</p>
+                    </div>
+                </div>
+                <button type="submit" name="candidate_id" value="{{ candidate.id }}" class="vote-btn">Vote</button>
+            </div>
+            {% empty %}
+            <p>No candidates are currently available for voting.</p>
+            {% endfor %}
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Online Voting System. All Rights Reserved.</p>
+    </div>
+</body>
+</html>

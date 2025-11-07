@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Capture and Training</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #000080, #1e90ff);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .container h1 { font-size: 28px; margin-bottom: 20px; }
+        .container p { font-size: 16px; margin-bottom: 30px; }
+        .container button {
+            background-color: #000080;
+            color: #ffffff;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+        .container button:hover { background-color: #1e90ff; }
+        .container button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        .status { margin-top: 20px; font-size: 14px; color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Face Capture & Training</h1>
+        <p>Click the buttons below to capture and train the user's face.</p>
+
+        <button id="startCapture">Start Capturing</button>
+        <button id="startTraining" disabled>Start Training</button>
+
+        <div id="statusMessage" class="status"></div>
+
+        <!-- Embed user ID as a data attribute -->
+        <div id="userId" data-user-id="{{ request.user.id }}"></div>
+    </div>
+
+    <script>
+        const captureButton = document.getElementById('startCapture');
+        const trainingButton = document.getElementById('startTraining');
+        const statusMessage = document.getElementById('statusMessage');
+        const userId = document.getElementById('userId').getAttribute('data-user-id');
+
+        captureButton.addEventListener('click', () => {
+            statusMessage.textContent = "Capturing user face... Please wait!";
+            trainingButton.disabled = true;
+
+            fetch("{% url 'capture_face' %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `user_id=${userId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                statusMessage.textContent = data.message;
+                if (data.status === "success") {
+                    trainingButton.disabled = false;
+                }
+            })
+            .catch(err => {
+                statusMessage.textContent = "An error occurred during face capture!";
+                console.error(err);
+            });
+        });
+
+        trainingButton.addEventListener('click', () => {
+            statusMessage.textContent = "Training user face... Please wait!";
+
+            fetch("{% url 'train_model' %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                statusMessage.textContent = data.message;
+                if (data.status === "success") {
+                    window.location.href = data.redirect_url;
+                }
+            })
+            .catch(err => {
+                statusMessage.textContent = "An error occurred during training!";
+                console.error(err);
+            });
+        });
+    </script>
+</body>
+</html>
