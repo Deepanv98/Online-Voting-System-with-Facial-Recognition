@@ -64,7 +64,19 @@ Now visit http://127.0.0.1:8000 to view the app.
 
 Online-Voting-System-with-Facial-Recognition/
 
-<pre> ## 🧑‍💻 Project Structure ``` Online-Voting-System-with-Facial-Recognition/ ├── manage.py ├── voting_app/ │ ├── models.py │ ├── views.py │ ├── urls.py │ └── templates/ ├── static/ ├── media/ └── README.md ``` </pre>
+<pre> ## 🧑‍💻 Project Structure 
+  
+``` Online-Voting-System-with-Facial-Recognition/
+├── manage.py
+├── voting_app/
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   └── templates/
+├── static/
+├── media/
+└── README.md
+``` </pre>
 
 # 📷 Facial Recognition Overview
 
